@@ -10,7 +10,7 @@
 }
 
 .container_pink{
-  width: 400px;
+  width: 100%;
   height: 309px;
   padding: 8px;
   background-color: #FAA2F2;
@@ -22,7 +22,7 @@
   margin-bottom: 20px;
 }
 .container_red{
-  width: 400px;
+  width: 100%;
   height: 154px;
   padding: 8px;
   background-color: #F05B30;
