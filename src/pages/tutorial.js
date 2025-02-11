@@ -67,6 +67,7 @@ export default function TutorialPage() {
                       <li>If your tower crashes, you have to rebuild from the last stable.</li>
                   </ul>
               </div>
+              <div className={styles.red_text} >So, do you have the brains and the balance to win Stack-A-Fact? Let's find out!</div>
               <div className={styles.start} >START</div>
           </div>
           
