@@ -1,0 +1,84 @@
+.container{
+    width: 100%;
+    height: 100dvh;
+
+}
+.container_image{
+    position: absolute;
+    align-self: center;
+    top: 30%;
+    z-index: 20;
+}
+
+/* Background container with flex layout */
+/* Note: Corrected flex-direction from 'rows' to 'row' */
+.background {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row; /* corrected from "rows" */
+  }
+  
+  /* Define keyframes for the slide-up animation */
+  @keyframes slideUp {
+    0% {
+      transform: translateY(100px); /* starting 50px below final position */
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Apply the slideUp animation to each colored block with delays */
+  
+  /* Pink 1 */
+  .pink_1 {
+    background-color: #FAA2F2;
+    width: 80px;
+    height: 100%;
+    opacity: 0; /* ensure it starts hidden */
+    animation: slideUp 2s ease forwards;
+    animation-delay: 0.2s; /* adjust delay as needed */
+  }
+  
+  /* Red */
+  .red {
+    background-color: #F05B30;
+    width: 140px;
+    height: 100%;
+    opacity: 0;
+    animation: slideUp 2s ease forwards;
+    animation-delay: 0.4s;
+  }
+  
+  /* Green */
+  .green {
+    background-color: #0ED973;
+    width: 91px;
+    height: 100%;
+    opacity: 0;
+    animation: slideUp 2s ease forwards;
+    animation-delay: 0.6s;
+  }
+  
+  /* Blue */
+  .blue {
+    background-color: #0EAAE8;
+    width: 50px;
+    height: 100%;
+    opacity: 0;
+    animation: slideUp 2s ease forwards;
+    animation-delay: 0.8s;
+  }
+  
+  /* Pink 2 */
+  .pink_2 {
+    background-color: #FAA2F2;
+    width: 80px;
+    height: 100%;
+    opacity: 0;
+    animation: slideUp 2s ease forwards;
+    animation-delay: 1s;
+  }
