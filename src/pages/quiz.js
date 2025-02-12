@@ -102,7 +102,6 @@ export default function QuizPage() {
 
   return (
     <div className={styles.achtergrond} style={{ backgroundColor }}>
-      <Header />
       <div className={styles.container}>
         {/* Display the current player's turn text */}
         <div className={styles.small_text}>
