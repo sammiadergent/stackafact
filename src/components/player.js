@@ -1,30 +1,37 @@
-import styles from '@/styles/Header.module.css';
+// components/player.js
+import React from 'react';
 import Link from 'next/link';
-import React, { useState } from 'react';
-import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Styles from '@/styles/Player.module.css';
 
-const Player = () => {
-    return(
-        <div className={Styles.container}>  
-            <Link href={"/team"} className={`${Styles.gridItem} ${Styles.item1}`}>
-                <div className={Styles.text} >cherry charm’s turn to prove the fact</div>
-                <div className={Styles.align}><Image src="arrow.svg" width={30} height={30} /></div>
-            </Link>
-            <Link href={"/team"} className={`${Styles.gridItem} ${Styles.item2}`}>
-                <div className={Styles.text} >spicy pumpkin’s turn to prove the fact</div>
-                <div className={Styles.align}><Image src="arrow.svg" width={30} height={30} /></div>
-            </Link>
-            <Link href={"/team"} className={`${Styles.gridItem} ${Styles.item3}`}>
-                <div className={Styles.text} >moody blue’s turn to prove the fact</div>
-                <div className={Styles.align}><Image src="arrow.svg" width={30} height={30} /></div>
-            </Link>
-            <Link href={"/team"} className={`${Styles.gridItem} ${Styles.item4}`}>
-                <div className={Styles.text} >funky avocado’s turn to prove the fact</div>
-                <div className={Styles.align}><Image src="arrow.svg" width={30} height={30} /></div>
-            </Link>
-        </div >
-    )  
+const Player = ({ aantalSpelers }) => {
+  // Array met alle spelers en bijbehorende styling
+  const players = [
+    { id: 1, name: "cherry charm’s turn to prove the fact", itemClass: Styles.item1 },
+    { id: 2, name: "spicy pumpkin’s turn to prove the fact", itemClass: Styles.item2 },
+    { id: 3, name: "moody blue’s turn to prove the fact", itemClass: Styles.item3 },
+    { id: 4, name: "funky avocado’s turn to prove the fact", itemClass: Styles.item4 },
+  ];
+
+  // Toon enkel de eerste `aantalSpelers` spelers
+  const visiblePlayers = players.slice(0, aantalSpelers);
+
+  return (
+    <div className={Styles.container}>
+      {visiblePlayers.map((player) => (
+        <Link 
+          key={player.id} 
+          href={"/team"} 
+          className={`${Styles.gridItem} ${player.itemClass}`}
+        >
+          <div className={Styles.text}>{player.name}</div>
+          <div className={Styles.align}>
+            <Image src="arrow.svg" width={30} height={30} alt="arrow" />
+          </div>
+        </Link>
+      ))}
+    </div>
+  );
 };
+
 export default Player;
