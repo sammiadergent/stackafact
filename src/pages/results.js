@@ -12,7 +12,7 @@ export default function IntroPage() {
               <h1 className={styles.big_text}>404:we are out of facts </h1>
               <div className={styles.align}>
                   <a className={styles.medium_titel}>Thank You for playing</a>
-                 <Link href={"/team"}> <div className={styles.button}>Go back</div></Link>
+                 <Link href={"/home"}> <div className={styles.button}>Go back</div></Link>
               </div>
 
       </div>
