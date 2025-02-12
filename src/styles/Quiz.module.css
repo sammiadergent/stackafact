@@ -1,0 +1,79 @@
+
+.achtergrond{
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: #FAA2F2;
+    height: 100vh;
+    padding-top: 50px;
+    
+
+}
+.container{
+    width: 100%;
+    height: 100%;
+    align-content: center; /* Verticaal centreren */
+    display: flex;
+    flex-direction: column;
+    
+}
+.small_text {
+    font-family: 'Nohemi Bold';
+    font-size: 24px;
+    padding-bottom: 40px;
+    text-transform: lowercase;
+    color: black;
+    text-align: center;
+}
+.big_text {
+    font-family: 'Nohemi Bold';
+    font-size: 40px;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+    color: black;
+    text-align: left;
+
+}
+
+/* FlexBox.module.css */
+.container {
+    gap: 1rem; /* Optioneel: ruimte tussen de elementen */
+    padding-bottom: 16px;
+  }
+  
+  .item {
+    display: flex;
+    justify-content: center; /* Horizontaal centreren */
+    align-items: center; /* Verticaal centreren */
+    background-color: white;  /* Voorbeeld achtergrondkleur */
+    padding-left: 16px;
+    padding-right: 16px;
+    border: 3px solid #000;  /* Voorbeeld rand */
+    border-radius: 12px;
+    color: black;
+    text-align: center;
+    font-family: 'Nohemi regular';
+    text-transform: lowercase;
+    min-height: 80px;
+  }
+  
+  .button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    width: 168px ;
+    height: 60px;
+    border-radius: 38.5px;
+    font-family: 'Nohemi Bold';
+    font-size: 24px;
+    color: black;
+    text-transform: uppercase;
+    align-self: center;
+  }
+  .footer{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

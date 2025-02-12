@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 export default function IntroPage() {
   return (
-    <div >
+    <div className={styles.padding}>
       <Header />
       <div className={styles.container}>
         <h1 className={styles.big_text}>WELCOME TO [STACK A FACT]. AN INTERACTIVE GAME TO LEARN, GUESS AND CURSE. </h1>

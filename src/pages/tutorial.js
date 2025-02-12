@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 export default function TutorialPage() {
   return (
-    <div >
+    <div className={styles.padding}>
       <Header />
             <div className={styles.container}>
              <h1 className={styles.big_text}>[TUTORIAL] HOW TO PLAY AND ENJOY THE GAME. </h1>

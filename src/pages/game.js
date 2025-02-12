@@ -16,7 +16,7 @@ export default function GamePage() {
   }
 
   return (
-    <div>
+    <div className={styles.padding}>
       <Header />
       <div className={styles.container}>
         <h1 className={styles.big_text}>who’s turn?</h1>

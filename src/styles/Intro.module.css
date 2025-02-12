@@ -66,7 +66,7 @@
   /* Blue */
   .blue {
     background-color: #0EAAE8;
-    width: 50px;
+    width: 80px;
     height: 100%;
     opacity: 0;
     animation: slideUp 2s ease forwards;

@@ -5,6 +5,10 @@
 
   
   }
+  .padding{
+    padding-left: 8px;
+    padding-right: 8px;
+  }
   .big_text {
     font-family: 'Nohemi Bold';
     font-size: 40.79px;

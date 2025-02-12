@@ -1,21 +1,21 @@
 export const questions = [
     {
-      code: '1234',
+      code: '1',
       question: 'What is 2 + 2?',
       correctAnswer: '4',
-      info: 'That’s correct because 2 + 2 = 4!',
+      wrongAnswers: ['3', '5', '6'],
     },
     {
-      code: '5678',
+      code: '2',
       question: 'What is the capital of France?',
       correctAnswer: 'Paris',
-      info: 'Paris is the capital city of France.',
+      wrongAnswers: ['Madrid', 'Spanje', 'Londen'],
     },
     {
-      code: 'ABCD',
+      code: '3',
       question: 'What color is the sky on a clear day?',
       correctAnswer: 'Blue',
-      info: 'Blue is the color often seen due to Rayleigh scattering.',
+      wrongAnswers: ['yellow', 'Purple', 'pink'],
     },
     // Add more objects as needed
   ];
