@@ -52,7 +52,10 @@ a {
   text-decoration: none;
 }
 
-
+.big_text {
+  font-family: 'Nohemi Bold';
+  font-size: 40.79px;
+}
 
 
 

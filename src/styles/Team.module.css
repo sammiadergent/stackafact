@@ -1,0 +1,71 @@
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+  
+  }
+  .big_text {
+    font-family: 'Nohemi Bold';
+    font-size: 40.79px;
+    padding-bottom: 24px;
+  }
+  
+  .medium_titel{
+    font-family: 'Nohemi Medium';
+    font-size: 24px;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+    
+  }
+  .grid_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 10px; /* Optional spacing between items */
+    width: 100%;
+    height: 406px;
+    padding-bottom: 20px;
+  }
+  
+
+  .item {
+    padding: 10px;
+    background-color: #f0f0f0;
+    text-align: center;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Optional: Specific styles for each item */
+  .item1 {
+    background-color: #F05B30;
+  }
+  
+  .item2 {
+    background-color: #0ED973;
+  }
+  
+  /* Make item3 span both columns */
+  .item3 {
+    grid-column: 1 / span 2; /* Or grid-column: 1 / -1; */
+    background-color: #FAA2F2;
+  }
+  .rondje{
+    width: 98px;
+    height: 98px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    border-color: black;
+    border-width: 3px;
+    font-family: 'Nohemi Bold';
+    font-size: 52px;
+  }

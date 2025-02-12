@@ -33,7 +33,9 @@ export default function TutorialPage() {
                   </div>
                   <div><Image src="arrow.svg" width={30} height={30} /></div>
               </div>
-              <div className={styles.start} >START</div>
+              <Link className={styles.buttonwutton} href={"/team"}>
+                  <div className={styles.start} >START</div>
+              </Link>
               <h1 className={styles.big_text}>[HOW TO PLAY] </h1>
               <a className={styles.smaller_text}>SETUP PHASE </a>
               <div className={styles.list}>
@@ -68,7 +70,9 @@ export default function TutorialPage() {
                   </ul>
               </div>
               <div className={styles.red_text} >So, do you have the brains and the balance to win Stack-A-Fact? Let's find out!</div>
-              <div className={styles.start} >START</div>
+              <Link className={styles.buttonwutton} href={"/team"}>
+                  <div className={styles.start} >START</div>
+              </Link>
           </div>
           
     </div>
