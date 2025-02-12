@@ -33,6 +33,8 @@ export default function QuizPage() {
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(initialPlayerIndex);
   const [answerStatus, setAnswerStatus] = useState('none'); // 'none', 'correct', or 'wrong'
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
+  // State to store shuffled answers for the current question
+  const [shuffledAnswers, setShuffledAnswers] = useState([]);
 
   // End the game when we've exhausted all questions
   useEffect(() => {
@@ -49,8 +51,16 @@ export default function QuizPage() {
     return null;
   }
 
-  // Get answers in fixed order: correct answer first, then wrong answers.
-  const answers = [currentQuestion.correctAnswer, ...currentQuestion.wrongAnswers];
+  // When the current question changes, shuffle the answers once
+  useEffect(() => {
+    const allAnswers = [currentQuestion.correctAnswer, ...currentQuestion.wrongAnswers];
+    // Shuffle using a random sort
+    const shuffled = [...allAnswers].sort(() => Math.random() - 0.5);
+    setShuffledAnswers(shuffled);
+    // Reset answer selection and status for the new question
+    setSelectedAnswerIndex(null);
+    setAnswerStatus('none');
+  }, [currentQuestion]);
 
   // When an answer is clicked…
   const handleAnswerClick = (answer, index) => {
@@ -92,7 +102,7 @@ export default function QuizPage() {
 
   return (
     <div className={styles.achtergrond} style={{ backgroundColor }}>
-      
+      <Header />
       <div className={styles.container}>
         {/* Display the current player's turn text */}
         <div className={styles.small_text}>
@@ -104,7 +114,7 @@ export default function QuizPage() {
           {currentQuestion.question}
         </div>
         <div className={styles.answersContainer}>
-          {answers.map((answer, index) => {
+          {shuffledAnswers.map((answer, index) => {
             // If the answer was selected and is correct, add a special CSS class.
             const answerClass =
               selectedAnswerIndex === index && answerStatus === 'correct'
