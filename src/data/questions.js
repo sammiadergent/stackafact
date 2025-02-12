@@ -16,7 +16,19 @@ export const questions = [
       question: 'What color is the sky on a clear day?',
       correctAnswer: 'Blue',
       wrongAnswers: ['yellow', 'Purple', 'pink'],
-    },
-    // Add more objects as needed
+  },
+  {
+    code: '4',
+    question: 'What color is the sky on a rainy?',
+    correctAnswer: 'grey',
+    wrongAnswers: ['yellow', 'Purple', 'pink'],
+  },
+  {
+    code: '4',
+    question: 'blablabla',
+    correctAnswer: 'bleybley',
+    wrongAnswers: ['y', 'h', 'e'],
+  },
+    
   ];
   
