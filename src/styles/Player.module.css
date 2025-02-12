@@ -1,0 +1,50 @@
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Twee gelijke kolommen */
+    gap: 10px; /* Ruimte tussen de vakjes */
+    padding: 10px;
+    width: 100%;
+    height: 590px;
+  }
+
+  
+  .gridItem {
+    padding: 8px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-weight: bold;
+    color: white; /* Zorgt dat de tekst leesbaar is */
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  /* Geef elk vakje een andere achtergrondkleur */
+  .item1 {
+    background-color: #FAA2F2; /* Bijvoorbeeld roodachtig */
+  }
+  
+  .item2 {
+    background-color: #F05B30; /* Bijvoorbeeld blauwachtig */
+  }
+  
+  .item3 {
+    background-color: #0EAAE8; /* Bijvoorbeeld groenachtig */
+  }
+  
+  .item4 {
+    background-color: #0ED973; /* Bijvoorbeeld roze */
+  }
+  
+  .text{
+    font-family: 'Nohemi Medium';
+    font-size: 24px;
+    text-align: left;
+    color: black;
+    text-transform: uppercase;
+  }
+  .align{
+    align-self: flex-end;
+  }
