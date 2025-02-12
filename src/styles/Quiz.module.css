@@ -1,6 +1,6 @@
 /* Quiz.module.css */
 .achtergrond {
-  height: 100dvh;
+  height: max-content;
   display: flex;
   flex-direction: column;
   padding-left: 8px;
