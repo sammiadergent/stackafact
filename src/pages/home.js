@@ -17,11 +17,13 @@ export default function IntroPage() {
           </div>
           <div className={styles.button_rond}><Image src="play.svg" width={20} height={20} />  </div>
                   </div>
-                  </Link>
+        </Link>
+        <Link href={"/team"}> 
         <div className={styles.container_red}>
-          <div className={styles.button}>start</div>
+         <div className={styles.button}>start</div>
           <div className={styles.button_rond_person}><Image src="person.svg" width={34} height={24} />  </div>
-        </div>
+          </div>
+          </Link>
       </div>
     </div>
   );
