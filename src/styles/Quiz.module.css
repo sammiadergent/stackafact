@@ -102,3 +102,8 @@
 .logo{
   align-self: center;
 }
+
+.wrongAnswer {
+  background-color: #F05B30 !important; /* ✅ Turns red when the answer is wrong */
+  color: white;
+}

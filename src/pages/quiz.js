@@ -115,22 +115,28 @@ export default function QuizPage() {
         </div>
 
         <div className={styles.answersContainer}>
-          {shuffledAnswers.map((answer, index) => {
-            const answerClass =
-              selectedAnswerIndex === index && answerStatus === 'correct'
-                ? `${styles.item} ${styles.correctAnswer}`
-                : styles.item;
-            return (
-              <div 
-                key={index}
-                className={answerClass}
-                onClick={() => handleAnswerClick(answer, index)}
-              >
-                {answer}
-              </div>
-            );
-          })}
-        </div>
+  {shuffledAnswers.map((answer, index) => {
+    let answerClass = styles.item; // Default class
+
+    if (selectedAnswerIndex === index) {
+      if (answerStatus === 'correct') {
+        answerClass = `${styles.item} ${styles.correctAnswer}`;
+      } else if (answerStatus === 'wrong') {
+        answerClass = `${styles.item} ${styles.wrongAnswer}`; // ✅ Apply red background for wrong answers
+      }
+    }
+
+    return (
+      <div 
+        key={index}
+        className={answerClass}
+        onClick={() => handleAnswerClick(answer, index)}
+      >
+        {answer}
+      </div>
+    );
+  })}
+</div>
 
         {/* Button always present but hidden when inactive */}
         <div 
