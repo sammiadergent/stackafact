@@ -4,7 +4,8 @@ export const questions = [
       question: 'All Spanish people take a nap in the afternoon.',
       correctAnswer: 'No, not everyone takes a nap',
       wrongAnswers: ['Yes, it’s a law in Spain', 'Only people over 50 take naps', 'yes, for at least 3 hours daily'],
-    },
+  },
+
     {
       code: '2',
       question: 'Spain has more bars than any other country in Europe',
@@ -119,5 +120,6 @@ export const questions = [
     correctAnswer: 'Yes, it was an old tradition in Ypres',
     wrongAnswers: ['No, Belgium loves cats too much for that', 'Spaniards actually had this tradition', 'It was part of a famous Belgian fairy tale'],
   },
+
    
   ];

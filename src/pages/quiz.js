@@ -33,16 +33,17 @@ export default function QuizPage() {
   const [shuffledAnswers, setShuffledAnswers] = useState([]);
   const [showNextButton, setShowNextButton] = useState(false); // Delayed button visibility
 
+  // ✅ Fix: Ensure navigation to /results happens as soon as the last question is reached
   useEffect(() => {
     if (currentQuestionIndex >= questions.length) {
       router.replace('/results');
-      return;
     }
   }, [currentQuestionIndex, router]);
 
   const currentQuestion = questions[currentQuestionIndex] || null;
 
-  if (!currentQuestion) {
+  // ✅ Fix: Prevent returning null before navigation happens
+  if (!currentQuestion && currentQuestionIndex < questions.length) {
     return null;
   }
 
@@ -64,26 +65,34 @@ export default function QuizPage() {
   const handleAnswerClick = (answer, index) => {
     if (answerStatus !== 'none') return;
     setSelectedAnswerIndex(index);
-
+  
     if (answer === currentQuestion.correctAnswer) {
       setAnswerStatus('correct');
-      setShowNextButton(true); // Immediately show button when correct
     } else {
       setAnswerStatus('wrong');
-      setTimeout(() => {
-        setShowNextButton(true); // Delay showing the button when wrong
-      }, 1500);
     }
+  
+    setShowNextButton(true); // ✅ Immediately show the button after clicking an answer
   };
 
   const handleSolve = () => {
     if (!showNextButton) return; // Ensure button delay is respected
 
+    setCurrentPlayerIndex((prevIndex) => (prevIndex + 1) % totalPlayers); // Always change player
+
     if (answerStatus === 'correct') {
-      setCurrentQuestionIndex((prevIndex) => prevIndex + 1); // Only change question on correct answer
+      setCurrentQuestionIndex((prevIndex) => {
+        const newIndex = prevIndex + 1;
+
+        // ✅ Fix: Ensure navigation happens immediately when the last question is reached
+        if (newIndex >= questions.length) {
+          router.replace('/results');
+        }
+
+        return newIndex;
+      });
     }
 
-    setCurrentPlayerIndex((prevIndex) => (prevIndex + 1) % totalPlayers); // Always change player
     setAnswerStatus('none');
     setSelectedAnswerIndex(null);
     setShowNextButton(false);
@@ -102,7 +111,7 @@ export default function QuizPage() {
         <div className={styles.small_text}>{playerText}</div>
 
         <div className={`${styles.big_text} ${answerStatus === 'correct' ? styles.correctBar : ''}`}>
-          {currentQuestion.question}
+          {currentQuestion?.question}
         </div>
 
         <div className={styles.answersContainer}>
