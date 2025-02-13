@@ -21,7 +21,7 @@ export default function HomePage() {
     // Clean up the event listener on unmount
     return () => {
       if (pink2Element) {
-        pink2Element.removeEventListener('animationend', handleAnimationEnd);
+         pink2Element.removeEventListener('animationend', handleAnimationEnd);
       }
     };
   }, [router]);

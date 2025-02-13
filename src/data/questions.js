@@ -119,6 +119,5 @@ export const questions = [
     correctAnswer: 'Yes, it was an old tradition in Ypres',
     wrongAnswers: ['No, Belgium loves cats too much for that', 'Spaniards actually had this tradition', 'It was part of a famous Belgian fairy tale'],
   },
-    
+   
   ];
-  

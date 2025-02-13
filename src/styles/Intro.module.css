@@ -1,13 +1,20 @@
 .container{
     width: 100%;
     height: 100dvh;
+    
 
 }
 .container_image{
     position: absolute;
     align-self: center;
-    top: 30%;
+    top: 0%;
     z-index: 20;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 /* Background container with flex layout */
@@ -36,7 +43,7 @@
   /* Pink 1 */
   .pink_1 {
     background-color: #FAA2F2;
-    width: 80px;
+    width: 10%;
     height: 100%;
     opacity: 0; /* ensure it starts hidden */
     animation: slideUp 2s ease forwards;
@@ -46,7 +53,7 @@
   /* Red */
   .red {
     background-color: #F05B30;
-    width: 140px;
+    width: 30%;
     height: 100%;
     opacity: 0;
     animation: slideUp 2s ease forwards;
@@ -56,7 +63,7 @@
   /* Green */
   .green {
     background-color: #0ED973;
-    width: 91px;
+    width: 20%;
     height: 100%;
     opacity: 0;
     animation: slideUp 2s ease forwards;
@@ -66,7 +73,7 @@
   /* Blue */
   .blue {
     background-color: #0EAAE8;
-    width: 80px;
+    width: 10%;
     height: 100%;
     opacity: 0;
     animation: slideUp 2s ease forwards;
@@ -76,7 +83,7 @@
   /* Pink 2 */
   .pink_2 {
     background-color: #FAA2F2;
-    width: 80px;
+    width: 30%;
     height: 100%;
     opacity: 0;
     animation: slideUp 2s ease forwards;

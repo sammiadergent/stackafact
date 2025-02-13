@@ -4,6 +4,7 @@ import Header from '@/components/header';
 import styles from '@/styles/Quiz.module.css';
 import Image from 'next/image';
 import { questions } from '@/data/questions'; // Ensure the path is correct
+import BackButton from '@/components/back';
 
 // Define base background colors per player (adjust as needed)
 const playerColors = ['#FAA2F2', '#F05B30', '#0EAAE8', '#0ED973'];
@@ -39,28 +40,34 @@ export default function QuizPage() {
   // End the game when we've exhausted all questions
   useEffect(() => {
     if (currentQuestionIndex >= questions.length) {
-      router.push('/results');
+      router.replace('/results');
+      return;
     }
   }, [currentQuestionIndex, router]);
-
-  // Get the current question from the database
-  const currentQuestion = questions[currentQuestionIndex];
-
-  // In case there is no current question (should be handled by useEffect), render nothing.
+  
+  const currentQuestion = questions[currentQuestionIndex] || null;
+  
+  // Stop met renderen als er geen geldige vraag is
   if (!currentQuestion) {
     return null;
   }
+  
 
   // When the current question changes, shuffle the answers once
   useEffect(() => {
+    if (!currentQuestion || typeof currentQuestion.correctAnswer !== 'string' || !Array.isArray(currentQuestion.wrongAnswers)) {
+      router.replace('/results');
+      return;
+    }
+  
     const allAnswers = [currentQuestion.correctAnswer, ...currentQuestion.wrongAnswers];
-    // Shuffle using a random sort
     const shuffled = [...allAnswers].sort(() => Math.random() - 0.5);
+    
     setShuffledAnswers(shuffled);
-    // Reset answer selection and status for the new question
     setSelectedAnswerIndex(null);
     setAnswerStatus('none');
   }, [currentQuestion]);
+  
 
   // When an answer is clicked…
   const handleAnswerClick = (answer, index) => {
@@ -102,6 +109,7 @@ export default function QuizPage() {
 
   return (
     <div className={styles.achtergrond} style={{ backgroundColor }}>
+      
       <div className={styles.container}>
         {/* Display the current player's turn text */}
         <div className={styles.small_text}>
@@ -134,9 +142,7 @@ export default function QuizPage() {
         <div className={styles.button} onClick={handleSolve}>
           Next player
         </div>  
-        <div className={styles.footer}>
-          <Image src="/logo.svg" width={176.78} height={24.72} alt="logo" />
-        </div>
+        <Image src="langlogo.svg" width={176.78} height={24.72} className={styles.logo} />
       </div>
     </div>
   );

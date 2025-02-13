@@ -22,7 +22,7 @@ export default function TutorialPage() {
                       <div className={styles.small_text}>2-4 players</div>
                       <div className={styles.small_text}>1 game master</div>
                   </div>
-                  <div><Image src="arrow.svg" width={30} height={30} /></div>
+                  <div></div>
               </div>
               <div className={styles.container_red}>
                   <div>
@@ -31,7 +31,7 @@ export default function TutorialPage() {
                       <div className={styles.small_text}>1 qr code to the webside</div>
                       <div className={styles.small_text}>1 rulebook</div>
                   </div>
-                  <div><Image src="arrow.svg" width={30} height={30} /></div>
+                  <div></div>
               </div>
               <Link className={styles.buttonwutton} href={"/team"}>
                   <div className={styles.start} >START</div>
