@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Header from '@/components/header';
 import styles from '@/styles/Quiz.module.css';
 import Image from 'next/image';
-import { questions } from '@/data/questions'; // Ensure the path is correct
+import { questions } from '@/data/questions';
 import BackButton from '@/components/back';
 
-// Define base background colors per player (adjust as needed)
+// Define base background colors per player
 const playerColors = ['#FAA2F2', '#F05B30', '#0EAAE8', '#0ED973'];
 
 // Define the full turn texts for each player
@@ -21,108 +20,93 @@ export default function QuizPage() {
   const router = useRouter();
   const { playerIndex, aantal, questionIndex } = router.query;
 
-  // Wait until query parameters are available
   if (!router.isReady) return <div>Loading...</div>;
 
-  // Read total number of players from "aantal" (or default to available players)
   const totalPlayers = parseInt(aantal, 10) || playerColors.length;
   const initialPlayerIndex = parseInt(playerIndex, 10) || 0;
   const initialQuestionIndex = parseInt(questionIndex, 10) || 0;
 
-  // State for current question and current player
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(initialQuestionIndex);
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(initialPlayerIndex);
   const [answerStatus, setAnswerStatus] = useState('none'); // 'none', 'correct', or 'wrong'
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
-  // State to store shuffled answers for the current question
   const [shuffledAnswers, setShuffledAnswers] = useState([]);
+  const [showNextButton, setShowNextButton] = useState(false); // Delayed button visibility
 
-  // End the game when we've exhausted all questions
   useEffect(() => {
     if (currentQuestionIndex >= questions.length) {
       router.replace('/results');
       return;
     }
   }, [currentQuestionIndex, router]);
-  
+
   const currentQuestion = questions[currentQuestionIndex] || null;
-  
-  // Stop met renderen als er geen geldige vraag is
+
   if (!currentQuestion) {
     return null;
   }
-  
 
-  // When the current question changes, shuffle the answers once
   useEffect(() => {
     if (!currentQuestion || typeof currentQuestion.correctAnswer !== 'string' || !Array.isArray(currentQuestion.wrongAnswers)) {
       router.replace('/results');
       return;
     }
-  
+
     const allAnswers = [currentQuestion.correctAnswer, ...currentQuestion.wrongAnswers];
     const shuffled = [...allAnswers].sort(() => Math.random() - 0.5);
-    
+
     setShuffledAnswers(shuffled);
     setSelectedAnswerIndex(null);
     setAnswerStatus('none');
-  }, [currentQuestion]);
-  
+    setShowNextButton(false);
+  }, [currentQuestionIndex]); // Shuffle only when the question changes
 
-  // When an answer is clicked…
   const handleAnswerClick = (answer, index) => {
-    if (answerStatus !== 'none') return; // Prevent multiple clicks
+    if (answerStatus !== 'none') return;
     setSelectedAnswerIndex(index);
 
     if (answer === currentQuestion.correctAnswer) {
       setAnswerStatus('correct');
+      setShowNextButton(true); // Immediately show button when correct
     } else {
       setAnswerStatus('wrong');
-      // When wrong, temporarily change the overall background to grey and allow a retry.
       setTimeout(() => {
-        setAnswerStatus('none');
-        setSelectedAnswerIndex(null);
+        setShowNextButton(true); // Delay showing the button when wrong
       }, 1500);
     }
   };
 
-  // When the "Next player" button is clicked (only if the answer is correct)
   const handleSolve = () => {
-    if (answerStatus !== 'correct') return; // Only proceed if the answer is correct
+    if (!showNextButton) return; // Ensure button delay is respected
 
-    // Advance to the next player (using modulo to wrap around)
-    const nextPlayerIndex = (currentPlayerIndex + 1) % totalPlayers;
-    setCurrentPlayerIndex(nextPlayerIndex);
-    // Advance to the next question in the database
-    setCurrentQuestionIndex(currentQuestionIndex + 1);
-    // Reset answer status and selection for the new turn
+    if (answerStatus === 'correct') {
+      setCurrentQuestionIndex((prevIndex) => prevIndex + 1); // Only change question on correct answer
+    }
+
+    setCurrentPlayerIndex((prevIndex) => (prevIndex + 1) % totalPlayers); // Always change player
     setAnswerStatus('none');
     setSelectedAnswerIndex(null);
+    setShowNextButton(false);
   };
 
-  // Determine the overall background color:
-  // Use the current player's color unless the answer is wrong (then use grey).
   let backgroundColor = playerColors[currentPlayerIndex] || '#FFFFFF';
   if (answerStatus === 'wrong') {
     backgroundColor = '#CCCCCC';
   }
 
+  const playerText = answerStatus === 'wrong' ? "Sorry that's wrong" : playerTurnTexts[currentPlayerIndex];
+
   return (
     <div className={styles.achtergrond} style={{ backgroundColor }}>
-      
       <div className={styles.container}>
-        {/* Display the current player's turn text */}
-        <div className={styles.small_text}>
-          {playerTurnTexts[currentPlayerIndex]}
-        </div>
-        {/* Display the question.
-            When the answer is correct, add a class to turn the question bar green. */}
+        <div className={styles.small_text}>{playerText}</div>
+
         <div className={`${styles.big_text} ${answerStatus === 'correct' ? styles.correctBar : ''}`}>
           {currentQuestion.question}
         </div>
+
         <div className={styles.answersContainer}>
           {shuffledAnswers.map((answer, index) => {
-            // If the answer was selected and is correct, add a special CSS class.
             const answerClass =
               selectedAnswerIndex === index && answerStatus === 'correct'
                 ? `${styles.item} ${styles.correctAnswer}`
@@ -138,10 +122,16 @@ export default function QuizPage() {
             );
           })}
         </div>
-        {/* The "Next player" button advances the turn if the answer is correct */}
-        <div className={styles.button} onClick={handleSolve}>
+
+        {/* Button always present but hidden when inactive */}
+        <div 
+          className={styles.button} 
+          onClick={showNextButton ? handleSolve : undefined} 
+          style={{ visibility: showNextButton ? 'visible' : 'hidden', opacity: showNextButton ? 1 : 0 }}
+        >
           Next player
-        </div>  
+        </div>
+
         <Image src="langlogo.svg" width={176.78} height={24.72} className={styles.logo} />
       </div>
     </div>
