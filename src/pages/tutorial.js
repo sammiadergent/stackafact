@@ -3,6 +3,8 @@ import React from 'react';
 import Header from '@/components/header'
 import styles from '@/styles/Tutorial.module.css'
 import Image from 'next/image';
+import PinkBox from '@/components/pinkbox';
+
 
 export default function TutorialPage() {
   return (
@@ -10,12 +12,7 @@ export default function TutorialPage() {
       <Header />
             <div className={styles.container}>
              <h1 className={styles.big_text}>[TUTORIAL] HOW TO PLAY AND ENJOY THE GAME. </h1>
-            <div className={styles.container_pink}>
-             <div>
-            <div className={styles.button}>Video tutorial</div>
-             </div>
-            <div className={styles.button_rond}><Image src="play.svg" width={20} height={20} />  </div>  
-            </div>
+            <PinkBox/>
             <div className={styles.container_green}>
                   <div>
                       <div className={styles.big_text_2}>NEEDS</div>
