@@ -10,7 +10,7 @@ export default function PinkBox() {
   return (
     <div className={styles.container_pink}>
     <div className={styles.video}>
-        <YouTubePlayer videoUrl="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+        <YouTubePlayer videoUrl="https://youtu.be/s60T0qsoLZE?si=O5LgmU_8DDHD2OLL" />
     </div>
     <div className={styles.container}>
     <div>
